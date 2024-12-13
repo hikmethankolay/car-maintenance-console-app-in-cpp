@@ -1,191 +1,163 @@
-# Car Maintenance Project Library Generation and Testing Template
+# Car Maintenance Project Library: Generation and Testing
 
 ## Overview
 
-This project provides a suite of modules aimed to show how Cmake used with Ctest. Also combines doxygen documentation and test coverage reports
+This project provides a suite of modules designed to demonstrate how to use **CMake** with **CTest**, while integrating **Doxygen** documentation and test coverage reports.
 
 ## Requirements
 
-- CMake >= 3.12
-- C++ Standard >= 11
-- GoogleTest (for testing modules)
-- Visual Studio Communit Edition for Windows Generator
-- Ninja for WSL/Linux
+- **CMake** >= 3.12
+- **C++ Standard** >= 11
+- **GoogleTest** (for testing modules)
+- **Visual Studio Community Edition** (Windows generator)
+- **Ninja** (for WSL/Linux)
+
+---
 
 ## Setup Development Environment
 
-### Step-1 (Run on Windows, Can Effect on WSL)
+### Step 1: Configure Pre-Commit Hooks (Windows/WSL)
+Run `1-configure-pre-commit.bat` to copy the pre-commit script to `.git/hooks`. This ensures:
+- **Validation**: Checks `README.md`, `.gitignore`, and Doxygen files.
+- **Code Formatting**: Formats code using the **Astyle** tool.
 
-Run 1-configure-pre-commit.bat file to copy 1-pre-commit script to .git/hooks that checkes. README.md, gitignore and doxygenfiles. Also format code with astyle tool
+### Step 2: Generate `.gitignore` (Windows/WSL)
+If `.gitignore` is missing, run `2-create-git-ignore.bat` to generate it.
 
-### Step-2 (Run on Windows, Can Effect on WSL)
+### Step 3: Install Package Managers (Windows)
+Run `3-install-package-manager.bat` to install **choco** and **scoop** package managers.
 
-If gitignore missing then you can create gitignore with 2-create-git-ignore.bat file run this file.
+### Step 4: Install Development Tools (Windows)
+Run `4-install-windows-environment.bat` to install the required tools.
 
-### Step-3 (Only Windows)
+### Step 5: Setup WSL Environment (WSL Only)
+Open PowerShell as Administrator, enter **WSL**, navigate to the project folder, and run `4-install-wsl-environment.sh` to configure the WSL environment.
 
-Install package managers that we will use to install applications. Run 3-install-package-manager.bat to install choco and scoop package managers
-
-### Step-4 (Only Windows)
-
-Run 4-install-windows-enviroment.bat to install required applications. 
-
-### Step-5 (Only WSL)
-
-Open powershell as admin and enter WSL then goto project folder and run 4-install-wsl-environment.sh to setup WSL environment
-
-
+---
 
 ## Generate Development Environment
 
-You can run 9-clean-configure-app-windows.bat to generate Visual Studio Communit Edition Project of this file. Or You can use Cmake project development with Visual Studio Community Edition
+Run `9-clean-configure-app-windows.bat` to generate a Visual Studio Community Edition project. Alternatively, use **CMake** to create the project for Visual Studio.
 
+---
 
+## Build, Test, and Package
 
-## Build, Test and Package Application on Windows
+### On Windows
 
-Run 7-build-app-windows.bat to build, test and generate packed binaries for your application on windows.
+- **Complete Build**: Run `7-build-app-windows.bat` to:
+  - Build the project.
+  - Run tests.
+  - Generate packaged binaries.
 
+- **Generate Documentation**: Run `7-build-doc-windows.bat`.
 
+- **Run Tests Only**: Run `8-build-test-windows.bat`.
 
-Also you can run 7-build-doc-windows.bat to only generate documentation and 8-build-test-windows.bat to only test application. 
+### On WSL/Linux
 
-## Build, Test and Package Application on WSL
+Run `7-build-app-linux.sh` to build, test, and generate packaged binaries for the WSL environment.
 
-Run 7-build-app-linux.sh to build, test and generate packed binaries for your application on WSL environment.
-
-
+---
 
 ## Clean Project
+Run `9-clean-project.bat` to clean all project outputs.
 
-You can run 9-clean-project.bat to clean project outputs. 
+---
 
-### Functionalities
-In menu, user can see, register, update, delete a record he wants. Crop records and livestock records are contained separately which makes updating and following these records easy. If update function chosen from menu user can change any line he wants with ease even there is a million records. Same thing goes for delete function as well, user can delete a specified line or whole record if he/she wants. There is also a User Authentication system, nobody without correct username and password can access these records.
-These records contains information as below:
+## Functionalities
 
-### Carm Management System: 
+### Car Management System:
 
-1)Service History Tracking
+1. **Service History Tracking**
+   - Vehicle Model
+   - Service Kilometers
+   - Service Provider
+   - Service Cost
 
-	o	Vehicle’s Model
-	o	Vehicle’s service km
-	o	Service Provider
-	o	Service Cost
+2. **Maintenance Reminders**
+   - Vehicle Model
+   - Service Kilometers
+   - Service Type
 
+3. **Expense Logging**
+   - Vehicle Model
+   - Expense Type
+   - Expense Date
+   - Cost
 
-2-)Maintenance Reminders
+4. **Fuel Efficiency Reports**
+   - Vehicle Model
+   - L/100KM Fuel Consumption
 
-	o	Vehicle’s Model
-	o	Vehicle’s service km
-	o	Service Type
+### User Authentication
+- Provides secure access to records through username and password verification.
+- Allows the user to view, register, update, or delete records easily.
 
-3-)Expense Logging
+---
 
-	o	Vehicle’s Model
-	o	Expense Type
-	o	Expense Date
-	o	Cost
+## Testing and Validation
 
+- Tested using **GoogleTest** and **CTest**.
+- Achieves **100% test coverage** with successful unit tests.
 
-4-)Fuel Efficiency Reports
-
-	o	Vehicle’s Model
-	o	L/100KM Fuel consumption
-
-### Testing and Validation
-We tested and documented whole system with gtest and Ctest. It has %100 coverage test and %100 success at unit test results
+---
 
 ## Supported Platforms
 
-![Ubuntu badge](assets/badge-ubuntu.svg)
-
-![macOS badge](assets/badge-macos.svg)
-
-![Windows badge](assets/badge-windows.svg)
+- ![Ubuntu](assets/badge-ubuntu.svg)
+- ![macOS](assets/badge-macos.svg)
+- ![Windows](assets/badge-windows.svg)
 
 ### Test Coverage Ratios
 
-> **Note** : There is a known bug on doxygen following badges are in different folder but has same name for this reason in doxygen html report use same image for all content [Images with same name overwrite each other in output directory · Issue #8362 · doxygen/doxygen · GitHub](https://github.com/doxygen/doxygen/issues/8362). README.md and WebPage show correct badges.
-
-| Coverage Type | Windows OS                                                             | Linux OS (WSL-Ubuntu 20.04)                                              |
-| ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Line Based    | ![Line Coverage](assets/codecoveragelibwin/badge_linecoverage.svg)     | ![Line Coverage](assets/codecoverageliblinux/badge_linecoverage.svg)     |
+| Coverage Type | Windows                                                              | Linux (WSL-Ubuntu 20.04)                                                |
+| ------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Line Based    | ![Line Coverage](assets/codecoveragelibwin/badge_linecoverage.svg)  | ![Line Coverage](assets/codecoverageliblinux/badge_linecoverage.svg)    |
 | Branch Based  | ![Branch Coverage](assets/codecoveragelibwin/badge_branchcoverage.svg) | ![Branch Coverage](assets/codecoverageliblinux/badge_branchcoverage.svg) |
 | Method Based  | ![Method Coverage](assets/codecoveragelibwin/badge_methodcoverage.svg) | ![Method Coverage](assets/codecoverageliblinux/badge_methodcoverage.svg) |
 
 ### Documentation Coverage Ratios
 
-|                    | Windows OS                                                        | Linux OS (WSL-Ubuntu 20.04)                                         |
-| ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **Coverage Ratio** | ![Line Coverage](assets/doccoveragelibwin/badge_linecoverage.svg) | ![Line Coverage](assets/doccoverageliblinux/badge_linecoverage.svg) |
+| Platform       | Coverage Ratio                                                    |
+| -------------- | ----------------------------------------------------------------- |
+| Windows        | ![Documentation Coverage](assets/doccoveragelibwin/badge_linecoverage.svg) |
+| Linux          | ![Documentation Coverage](assets/doccoverageliblinux/badge_linecoverage.svg) |
 
+### Known Issue
+- Doxygen may overwrite badge images due to identical filenames. For correct visuals, refer to the `README.md` or webpage.
 
+---
 
-#### Install Test Results to HTML Converter
+## Build Processes
 
-We are using [GitHub - inorton/junit2html: Turn Junit XML reports into self contained HTML reports](https://github.com/inorton/junit2html) to convert junit xml formatted test results to HTML page for reporting also we store logs during test. Use following commands to install this module with pip
+### On Windows
 
-```bash
-pip install junit2html
-```
+Run `7-build-app-windows.bat` for a complete build in **11-15 minutes**, including:
 
-### Github Actions
+1. Cleaning project outputs.
+2. Generating required folders.
+3. Running Doxygen for documentation.
+4. Generating coverage reports using **Coverxygen**.
+5. Configuring the project for Visual Studio Community Edition.
+6. Building Debug and Release versions.
+7. Running tests and collecting coverage data using **OpenCppCoverage**.
+8. Generating reports for test coverage and documentation.
+9. Building the website with **MkDocs**.
+10. Compressing outputs to the release folder.
 
-This project also compiled and tested with Github Actions. If there is a missing setup or problem follow github action script for both Windows and WSL under
+### On WSL/Linux
 
-`.github/workflows/cpp.yml`
+Run `7-build-app-linux.sh` to perform similar tasks as the Windows script and generate release-ready outputs.
 
-Github actions take too much time more than 1 hour take to complete build for Windows, MacOS and Linux. Also its paid operation for this reason we use offline batch scripts easy to use. 
+---
 
-### Build App on Windows
+## Resources
 
-We have already configured script for build operations. `7-build-app-windows.bat` have complete all required tasks and copy outputs to release folder.  
+- [VS-Docker-WSL C++ Development](https://github.com/coruhtech/vs-docker-wsl-cpp-development)
+- [NS3 WSL Setup](https://github.com/ucoruh/ns3-wsl-win10-setup)
 
-**Operation Completed in 11-15 minutes.**
-
-- Clean project outputs
-
-- Create required folders
-
-- Run doxygen for documentation
-
-- Run coverxygen for document coverage report
-
-- Run Report Generator for Documentation Coverage Report
-
-- Configure project for Visual Studio Community Edition
-
-- Build Project Debug and Release
-
-- Install/Copy Required Library and Headers
-
-- Run Tests 
-
-- Run OpeCppCoverage for Coverage Data Collection
-
-- Run Reportgenerator for Test Coverage Report
-
-- Copy output report to webpage folder
-
-- Run mkdocs to build webpage
-
-- Compress outputs to release folder, everything is ready for deployment. 
-
-### Build App on WSL/Linux
-
-We are running WSL on Windows 10 and solve our virtual machine problem. We make cross-platform development. After development before commit we run and test app on Windows and WSL with this scripts. To run on WSL you need to install WSL first. 
-
-you can use our public notes
-
-- https://github.com/coruhtech/vs-docker-wsl-cpp-development
-
-- [GitHub - ucoruh/ns3-wsl-win10-setup: ns3 windows 10 WSL2 setup and usage](https://github.com/ucoruh/ns3-wsl-win10-setup)
-
-After WSL installation, right click and open WSL bash and run `7-build-app-linux.sh` this will provide similart task with windows and will generate report and libraries on release folder. 
-
-
-
-----
+---
 
 $End-Of-File$
+
